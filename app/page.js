@@ -8,7 +8,7 @@ export default function Home() {
   const [keyword, setKeyword] = useState("");
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-black p-8 gap-8">
+    <div className="flex flex-col items-center mt-5 min-h-screen bg-black p-8 gap-8">
       <h1 className="text-2xl text-white font-bold text-center">
         Scrape eBay Products in Easy Way
       </h1>
