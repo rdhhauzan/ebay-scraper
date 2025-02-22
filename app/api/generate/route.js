@@ -50,7 +50,7 @@ export async function POST(req) {
 
     const productLinks = allItemsHTML.match(/https:\/\/www\.ebay\.com\/itm\/\d+/g) || [];
 
-    for (const link of productLinks.slice(0, 60)) {
+    for (const link of productLinks.slice(0, 20)) {
       await page.goto(link, { waitUntil: "domcontentloaded" });
 
       const productDetailHTML = await page.evaluate(() => {
