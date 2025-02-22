@@ -4,12 +4,12 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #0F131A;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #12161D;
     --foreground: #ededed;
   }
 }
@@ -19,3 +19,46 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@keyframes rainbow-glow {
+  0% { border-color: red; box-shadow: 0 0 10px red; }
+  16% { border-color: orange; box-shadow: 0 0 10px orange; }
+  33% { border-color: yellow; box-shadow: 0 0 10px yellow; }
+  50% { border-color: green; box-shadow: 0 0 10px green; }
+  66% { border-color: blue; box-shadow: 0 0 10px blue; }
+  83% { border-color: indigo; box-shadow: 0 0 10px indigo; }
+  100% { border-color: violet; box-shadow: 0 0 10px violet; }
+}
+
+.custom-input {
+  background-color: black !important;
+  color: white !important;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  padding: 10px;
+  transition: all 0.3s ease-in-out;
+}
+
+.custom-input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.custom-input:focus {
+  outline: none;
+  animation: rainbow-glow 1.5s infinite linear;
+}
+
+/* Style for the Submit button */
+.custom-button {
+  background-color: #0891B2 !important;
+  color: white !important;
+  border-radius: 8px;
+  border: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.custom-button:hover {
+  background-color: #06aecb !important;
+}
+
+
