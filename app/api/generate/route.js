@@ -19,7 +19,7 @@ export async function POST(req) {
       apiKey: process.env.OPENAI_KEY,
     });
 
-    const browser = await puppeteer.launch({ headless: envCode ? "new" : false });
+    const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
 
     let allItemsHTML = "";
