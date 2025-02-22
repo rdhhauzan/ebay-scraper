@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Scrape eBay Products with OpenAI
 
-## Getting Started
+## Stack Used
+- JavaScript
+- Next.js
+- Ant Design (Antd)
+- OpenAI
 
-First, run the development server:
+## Default Model Used
+- `o1-mini-2024-09-12`
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Installation
+1. Rename `.env.example` to `.env`
+2. Add your OpenAI API key to the `.env` file:
+   ```
+   OPENAI_KEY=your-api-key-here
+   ```
+3. Install dependencies:
+   ```
+   npm install
+   ```
+4. Run the development server:
+   ```
+   npm run dev
+   ```
+5. Open `http://localhost:3000` in your browser to access the frontend.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## API Documentation
+- **Route:** `POST /api/generate`
+- **Request Body (Raw JSON):**
+  ```json
+  {
+    "keyword": "your keyword, e.g K-ON"
+  }
+  ```
+- **Response:** JSON formatted scraped data.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Frontend Page
+- Only one page (`/`) where users enter a keyword, submit the request, and copy the JSON result.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Notes
+- The results are **limited to 20** due to ChatGPT's slow response for large datasets. Change `OUTPUT_SIZE` in `.env` if you want more than 20 results.
+- The scraper **fetches a maximum of 5 pages** for performance reasons. Change `PAGE_LIMIT` in `.env` if you want to scrape more than 5 pages.
+  - **1 page = 60 results**
+- To change the OpenAI model, modify **line 79** in `app/api/generate/route.js`.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
