@@ -21,7 +21,7 @@ export async function POST(req) {
 
     let allItemsHTML = "";
 
-    for (let i = 1; i <= 5; i++) {
+    for (let i = 1; i <= process.env.PAGE_LIMIT; i++) {
       const url = `https://www.ebay.com/sch/i.html?_nkw=${encodeURIComponent(keyword)}&_pgn=${i}`;
       await page.goto(url, { waitUntil: "domcontentloaded" });
 
@@ -50,7 +50,7 @@ export async function POST(req) {
 
     const productLinks = allItemsHTML.match(/https:\/\/www\.ebay\.com\/itm\/\d+/g) || [];
 
-    for (const link of productLinks.slice(0, 20)) {
+    for (const link of productLinks.slice(0, process.env.OUTPUT_SIZE)) {
       await page.goto(link, { waitUntil: "domcontentloaded" });
 
       const productDetailHTML = await page.evaluate(() => {
